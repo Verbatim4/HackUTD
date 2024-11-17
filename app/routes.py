@@ -85,11 +85,11 @@ def catalog():
 
             data_packet = {
                 'date': request.form['date'],
-                'start-time': request.form['start-time'],
-                'end-time': request.form['end-time'],
-                'available-spots': request.form['available-spots'],
+                'start-time': request.form['start_time'],
+                'end-time': request.form['end_time'],
+                'available-spots': request.form['available_spots'],
                 'category': request.form['category'],
-                'license-number': request.form['license-number'],
+                'license-number': request.form['license_number'],
                 'mileage': request.form['mileage'],
                 'distance': request.form['distance'],
             }
@@ -151,8 +151,6 @@ def catalog():
                 if ride_value['category'] == category:
                     rides_category.add(ride_key)
 
-            print(rides_date, rides_time, rides_category)
-            print('\n\n\n\n\n')
             rides_intersection = set.intersection(rides_date, rides_time, rides_category)
 
             rides = []
