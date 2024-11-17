@@ -1,11 +1,285 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    Index
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Extend with JS</title>
+        <script
+            src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+        <link
+            href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css"
+            rel="stylesheet" />
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+            rel="stylesheet">
+    </head>
+    <body>
+
+        <nav class="bg-white border-gray-200">
+            <div
+                class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+                <a href="https://flowbite.com/"
+                    class="flex items-center space-x-3 rtl:space-x-reverse">
+                    <img src="{{ url_for('static', filename='logo.jpeg') }}"
+                        class="h-8" alt="Flowbite Logo" />
+                    <span
+                        class="self-center text-2xl font-semibold whitespace-nowrap dark:text-black">EDIR</span>
+                </a>
+                <div
+                    class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+                    <button type="button"
+                        class="flex text-sm rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+                        id="user-menu-button" aria-expanded="false"
+                        data-dropdown-toggle="user-dropdown"
+                        data-dropdown-placement="bottom">
+                        <span class="sr-only">Open user menu</span>
+                        <img class="w-8 h-8 rounded-full"
+                            src="{{ url_for('static', filename='download.png') }}"
+                            alt="user photo">
+                    </button>
+                    <!-- Dropdown menu -->
+                    <div
+                        class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow"
+                        id="user-dropdown">
+                        <div class="px-4 py-3">
+                            <span
+                                class="block text-sm text-gray-900 dark:text-black">Bonnie
+                                Green</span>
+                            <span
+                                class="block text-sm  text-gray-500 truncate dark:text-gray-400">name@flowbite.com</span>
+                        </div>
+                        <ul class="py-2" aria-labelledby="user-menu-button">
+                            <li>
+                                <a href="#"
+                                    class="block px-4 py-2 text-sm text-gray-700">Dashboard</a>
+                            </li>
+                            <li>
+                                <a href="#"
+                                    class="block px-4 py-2 text-sm text-gray-700 ">Settings</a>
+                            </li>
+                            <li>
+                                <a href="#"
+                                    class="block px-4 py-2 text-sm text-gray-700 ">Earnings</a>
+                            </li>
+                            <li>
+                                <a href="#"
+                                    class="block px-4 py-2 text-sm text-gray-700">Sign
+                                    out</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <button data-collapse-toggle="navbar-user" type="button"
+                        class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400"
+                        aria-controls="navbar-user" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <svg class="w-5 h-5" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 17 14">
+                            <path stroke="currentColor" stroke-linecap="round"
+                                stroke-linejoin="round" stroke-width="2"
+                                d="M1 1h15M1 7h15M1 13h15" />
+                        </svg>
+                    </button>
+                </div>
+                <div
+                    class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
+                    id="navbar-user">
+                    <ul
+                        class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:border-gray-700">
+                        <li>
+                            <a href="#"
+                                class="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
+                                aria-current="page">Home</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-black md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">About</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-black md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Services</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-black md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Pricing</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-black md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div>
+            <div
+                class="w-4/5 mx-auto bg-black p-6 mt-10 rounded-lg flex items-center justify-between">
+                <!-- Welcome Message -->
+                <p class="text-white text-center">Welcome back User!</p>
+
+                <!-- Navbar -->
+                <div id="navbar-user">
+                    <ul class="flex items-center space-x-6">
+                        <li>
+                            <a href="#"
+                                class="flex items-center space-x-2 text-white hover:text-blue-500">
+                                <i class="fas fa-wallet"></i>
+                                <!-- Wallet Icon -->
+                                <span>Wallet</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="flex items-center space-x-2 text-white hover:text-blue-500">
+                                <i class="fas fa-receipt"></i>
+                                <!-- Receipts Icon -->
+                                <span>Receipts</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="flex items-center space-x-2 text-white hover:text-blue-500">
+                                <i class="fas fa-user"></i>
+                                <!-- Account Icon -->
+                                <span>Account</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="w-4/5 mx-auto py-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                <!-- Left Column -->
+                <div class="text-center md:text-left">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-6">Explore
+                        Our Rides</h2>
+                    <p class="text-gray-600 mb-6">Browse through a wide
+                        selection of rides and find your perfect match for a
+                        comfortable and eco-friendly journey.</p>
+                    <div class="space-y-4">
+                        <!-- View All Rides Button -->
+                        <a href="#"
+                            class="block w-3/5 bg-gray-700 text-white py-3 px-6 rounded-lg hover:bg-gray-800 transition duration-300 flex justify-between items-center">
+                            <span>View All Rides</span>
+                            <i class="fas fa-arrow-right text-white"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Column (Image) -->
+                <div>
+                    <img src="{{ url_for('static', filename='ride.png') }}"
+                        alt="Ride image" class="w-full rounded-lg shadow-lg">
+                </div>
+            </div>
+        </div>
+
+        <div class="w-4/5 mx-auto py-12">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Recent Activity</h2>
+        
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Column 1: Map -->
+                <div class="bg-gray-100 p-6 rounded-lg shadow-md">
+                    <h5 class="text-xl font-semibold text-gray-800 mb-4">Map</h5>
+                    <!-- You can embed your map here, for example using an iframe or a map component -->
+                    <div class="w-full h-64 bg-gray-300 rounded-lg">
+                        <div id="map_container" class="tab-pane active">
+                            <div id="map" class="h-64 w-full"></div>
+                        </div>
+                    </div>
+                </div>
+        
+                <!-- Column 2: Table -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h5 class="text-xl font-semibold text-gray-800 mb-4">Past Rides</h5>
+                    <div class="relative overflow-x-auto">
+                        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                            <tbody>
+                                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                    <tbody>
+                                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                            <!-- Image column, 20% width -->
+                                            <td class="px-6 py-4 w-1/5">
+                                                <img src="{{ url_for('static', filename='large_car.png') }}" alt="Car" class="w-full h-auto">
+                                            </td>
+                                            
+                                            <!-- Left column: Airport, Date, and Price, 30% width -->
+                                            <td class="px-6 py-4 w-3/10">
+                                                <div class="flex flex-col">
+                                                    <span class="font-medium text-gray-900 dark:text-white">London Heathrow</span>
+                                                    <span class="text-gray-500 mt-1">6th Oct 20:00</span>
+                                                    <span class="text-gray-500 mt-1">$4.00</span>
+                                                </div>
+                                            </td>
+                                            
+                                            <!-- Right column: View Details button, remaining 50% -->
+                                            <td class="px-6 py-4 text-right w-1/2">
+                                                <button class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-300">
+                                                    View Details
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                
+                            </tbody>
+                        </table>                        
+                    </div>
+                </div>
+            </div>
+        </div>        
+
+    </body>
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css' rel='stylesheet' />
+
+    <script src="https://unpkg.com/topojson-client@3.1.0/dist/topojson-client.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let mapInitialized = false;
+            let map;
+            let bounds;
+
+
+            // Initialize Leaflet
+            function initializeLeaflet() {
+                map = L.map('map').setView([0, 0], 1); // Center of the world, zoom level 5
+                L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+                    maxZoom: 18,
+                    attribution: '© <a href="https://www.openstreetmap.org/copyright">EDIR</a>',
+                }).addTo(map);
+
+                const weatherLayer = L.tileLayer(
+                    'https://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=7379d101e8a3737a0e3fe73e9775e155', {
+                        tileSize: 256,
+                        opacity: 0.7, // Adjust opacity as needed
+                    });
+
+                // Add the weather layer to the map
+                weatherLayer.addTo(map);
+
+                // Adjust map size on load
+                map.once('load', function() {
+                    map.resize();
+                });
+
+                // Initialize bounds
+                bounds = L.latLngBounds();
+            }
+
+
+
+            // Initialize map if map tab is active by default
+            if (document.querySelector('#map_container').classList.contains('active')) {
+                initializeLeaflet();
+                mapInitialized = true;
+            }
+        });
+    </script>
 </html>
+
