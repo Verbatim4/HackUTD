@@ -27,3 +27,7 @@ def home():
 @app.route('/catalog')
 def catalog():
     return render_template('catalog.html')
+
+@app.route('/ride')
+def ride():
+    return render_template('ride.html')
