@@ -5,7 +5,7 @@ from .utils.get_user_data import get_database_reference
 
 @app.route('/', methods=('GET', 'POST'))
 def index():
-    if not session['user_info']:
+    if not session:
         if request.method == 'POST':
             email = request.form['floating_email']
             password = request.form['floating_password']
@@ -25,14 +25,29 @@ def index():
 
             ref = get_database_reference('/users')
             ref.push(user_packet)
-        
+
+            print('put user in db')
+
         else:
+            print('returned null session site')
             return render_template('index.html', session=None)
             
         session['user_info'] = user_packet
-        return render_template('index.html', session=session)
+        print('site with new session info')
+        return render_template('index.html', 
+            f_name=user_info['f_name'], 
+            l_name=user_info['l_name'], 
+            email=user_info['email']
+        )
+    
     else:
-        render_template('index.html', session=session)
+        print(session)
+        user_info = session['user_info']
+        return render_template('index.html', 
+            f_name=user_info['f_name'], 
+            l_name=user_info['l_name'], 
+            email=user_info['email']
+        )
 
 @app.route('/signup/')
 def sign_up():
