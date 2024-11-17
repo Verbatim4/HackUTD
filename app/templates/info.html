@@ -1,1 +1,133 @@
-<h1> "hello" </h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us</title>
+    <script src="https://cdn.jsdelivr.net/npm/tw-elements@latest/dist/js/index.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            padding-top: 80px; /* Ensures content is not overlapped by the fixed navbar */
+        }
+
+        nav {
+            background-color: black;
+        }
+
+        .container {
+            max-width: 1200px;
+        }
+
+        .content-card {
+            background-color: #1a1a1a;
+            padding: 2rem;
+            border-radius: 8px;
+        }
+
+        .content-card h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .content-card p {
+            font-size: 1.125rem;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        button {
+            background-color: #333;
+            color: white;
+            border: 1px solid #555;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            border-color: blue;
+            color: blue;
+        }
+
+        a {
+            color: rgb(242, 242, 248);
+        }
+
+        a:hover {
+            color: #1e90ff;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="bg-black border-b border-gray-700 w-full">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+            <!-- Logo Section -->
+            <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
+                <img src="{{ url_for('static', filename='logo.jpeg') }}" class="h-8" alt="Logo" />
+                <span class="text-2xl font-semibold">EDIR</span>
+            </a>
+            <!-- User and Menu Section -->
+            <div class="flex items-center md:order-2 space-x-3 rtl:space-x-reverse">
+                <button type="button" class="flex text-sm rounded-full focus:ring-4 focus:ring-gray-600"
+                    id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown">
+                    <span class="sr-only">Open user menu</span>
+                    <img class="w-8 h-8 rounded-full" src="{{ url_for('static', filename='download.png') }}"
+                        alt="User Photo">
+                </button>
+                <!-- Dropdown Menu -->
+                <div class="hidden z-50 my-4 text-base list-none bg-black divide-y divide-gray-100 rounded-lg shadow"
+                    id="user-dropdown">
+                    <div class="px-4 py-3">
+                        <span class="block text-sm">Bonnie Green</span>
+                        <span class="block text-sm text-gray-500 truncate">name@flowbite.com</span>
+                    </div>
+                    <ul class="py-2" aria-labelledby="user-menu-button">
+                        <li><a href="#" class="block px-4 py-2 text-sm hover:text-blue-400">Dashboard</a></li>
+                        <li><a href="#" class="block px-4 py-2 text-sm hover:text-blue-400">Settings</a></li>
+                        <li><a href="#" class="block px-4 py-2 text-sm hover:text-blue-400">Earnings</a></li>
+                        <li><a href="#" class="block px-4 py-2 text-sm hover:text-blue-400">Sign Out</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Navigation Links -->
+            <div class="hidden md:flex md:w-auto md:order-1">
+                <ul class="flex flex-row font-medium space-x-8">
+                    <li><a href="{{ url_for('index') }}" class="hover:text-blue-400"><b>Home</b></a></li>
+                    <li><a href="{{ url_for('info') }}" class="hover:text-blue-400">About</a></li>
+                    <li><a href="{{ url_for('postride') }}" class="hover:text-blue-400">Post Ride</a></li>
+                    <li><a href="{{ url_for('catalog') }}" class="hover:text-blue-400">Find Ride</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- About Section -->
+    <div class="container mx-auto p-6">
+        <div class="content-card">
+            <h1>About Us</h1>
+            <p>
+                Welcome to EDIR, a platform dedicated to connecting individuals who are looking to share rides. Whether you're looking for a lift to your next destination, or you'd like to offer a ride and help others along the way, EDIR provides the perfect platform for seamless, safe, and reliable transportation.
+            </p>
+            <p>
+                At EDIR, we believe in fostering a community that supports one another, making travel more affordable, environmentally friendly, and convenient. Our platform allows users to easily post available rides, find suitable matches, and exchange ride details. With our intuitive interface, you can quickly find or offer rides, making the process smooth and stress-free.
+            </p>
+            <p>
+                Our mission is to revolutionize the way people commute. We aim to create a community-driven transportation network that reduces the carbon footprint, promotes shared travel, and ensures everyone has access to affordable travel options.
+            </p>
+            <p>
+                We are constantly improving our platform and services to meet the needs of our users. If you have any feedback or suggestions, don't hesitate to reach out to us! Your opinion matters.
+            </p>
+            <div class="text-center mt-6">
+                <a href="{{ url_for('index') }}" class="text-blue-600 underline hover:text-blue-800">Return to Home</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

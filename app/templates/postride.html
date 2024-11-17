@@ -1,264 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Post a Ride</title>
-    <script src="https://cdn.jsdelivr.net/npm/tw-elements@latest/dist/js/index.min.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css"
-    />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
-    <style>
-      body {
-        padding-top: 80px; /* Ensures content is not overlapped by the fixed navbar */
-      }
-    </style>
-  </head>
-  <body class="bg-gray-100 flex flex-col items-center">
-    <!-- Navigation Bar -->
-    <nav
-      style="background-color: black"
-      class="border-b border-gray-700 w-full fixed top-0 left-0 z-10"
-    >
-      <div
-        class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4"
-      >
-        <!-- Logo Section -->
-        <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
-          <img
-            src="{{ url_for('static', filename='logo.jpeg') }}"
-            class="h-8"
-            alt="Logo"
-          />
-          <span class="text-2xl font-semibold text-white">EDIR</span>
-        </a>
-        <!-- User and Menu Section -->
-        <div class="flex items-center md:order-2 space-x-3 rtl:space-x-reverse">
-          <button
-            type="button"
-            class="flex text-sm rounded-full focus:ring-4 focus:ring-gray-600"
-            id="user-menu-button"
-            aria-expanded="false"
-            data-dropdown-toggle="user-dropdown"
-          >
-            <span class="sr-only">Open user menu</span>
-            <img
-              class="w-8 h-8 rounded-full"
-              src="{{ url_for('static', filename='download.png') }}"
-              alt="User Photo"
-            />
-          </button>
-          <!-- Dropdown Menu -->
-          <div
-            class="hidden z-50 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow"
-            id="user-dropdown"
-          >
-            <div class="px-4 py-3">
-              <span class="block text-sm text-gray-900">Bonnie Green</span>
-              <span class="block text-sm text-gray-500 truncate"
-                >name@flowbite.com</span
-              >
-            </div>
-            <ul class="py-2" aria-labelledby="user-menu-button">
-              <li>
-                <a href="#" class="block px-4 py-2 text-sm text-gray-700"
-                  >Dashboard</a
-                >
-              </li>
-              <li>
-                <a href="#" class="block px-4 py-2 text-sm text-gray-700"
-                  >Settings</a
-                >
-              </li>
-              <li>
-                <a href="#" class="block px-4 py-2 text-sm text-gray-700"
-                  >Earnings</a
-                >
-              </li>
-              <li>
-                <a href="#" class="block px-4 py-2 text-sm text-gray-700"
-                  >Sign Out</a
-                >
-              </li>
-            </ul>
-          </div>
-        </div>
-        <!-- Navigation Links -->
-        <div class="hidden md:flex md:w-auto md:order-1">
-          <ul class="flex flex-row font-medium space-x-8 text-white">
-            <li><a href="{{ url_for('index') }}" class="hover:text-blue-400"><b>Home</b></a></li>
-            <li><a href="{{ url_for('info') }}" class="hover:text-blue-400">About</a></li>
-            <li><a href="{{ url_for('postride') }}" class="hover:text-blue-400">Post Ride</a></li>
-            <li><a href="{{ url_for('catalog') }}" class="hover:text-blue-400">Find Ride</a></li>
 
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Post a Ride</title>
+  <script src="https://cdn.jsdelivr.net/npm/tw-elements@latest/dist/js/index.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+  <style>
+    body {
+      padding-top: 80px;
+      /* Ensures content is not overlapped by the fixed navbar */
+      background-color: black;
+      color: white;
+    }
+  </style>
+</head>
+
+<body class="bg-black">
+
+  <!-- Navigation Bar -->
+  <nav class="border-b border-gray-700 w-full fixed top-0 left-0 z-10 bg-black">
+    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+      <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
+        <img src="{{ url_for('static', filename='logo.jpeg') }}" class="h-8" alt="Logo" />
+        <span class="text-2xl font-semibold text-white">EDIR</span>
+      </a>
+      <div class="flex items-center md:order-2 space-x-3 rtl:space-x-reverse">
+        <button type="button" class="flex text-sm rounded-full focus:ring-4 focus:ring-gray-600" id="user-menu-button"
+          aria-expanded="false" data-dropdown-toggle="user-dropdown">
+          <img class="w-8 h-8 rounded-full" src="{{ url_for('static', filename='download.png') }}" alt="User Photo" />
+        </button>
+        <div class="hidden z-50 my-4 text-base list-none bg-black divide-y divide-gray-100 rounded-lg shadow"
+          id="user-dropdown">
+          <div class="px-4 py-3">
+            <span class="block text-sm text-white">Bonnie Green</span>
+            <span class="block text-sm text-white truncate">name@flowbite.com</span>
+          </div>
+          <ul class="py-2" aria-labelledby="user-menu-button">
+            <li><a href="#" class="block px-4 py-2 text-sm text-white">Dashboard</a></li>
+            <li><a href="#" class="block px-4 py-2 text-sm text-white">Settings</a></li>
+            <li><a href="#" class="block px-4 py-2 text-sm text-white">Earnings</a></li>
+            <li><a href="#" class="block px-4 py-2 text-sm text-white">Sign Out</a></li>
           </ul>
         </div>
       </div>
-    </nav>
+      <div class="hidden md:flex md:w-auto md:order-1">
+        <ul class="flex flex-row font-medium space-x-8 text-white">
+          <li><a href="{{ url_for('index') }}" class="hover:text-blue-400"><b>Home</b></a></li>
+          <li><a href="{{ url_for('info') }}" class="hover:text-blue-400">About</a></li>
+          <li><a href="{{ url_for('postride') }}" class="hover:text-blue-400">Post Ride</a></li>
+          <li><a href="{{ url_for('catalog') }}" class="hover:text-blue-400">Find Ride</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-    
-       <!-- Container for Both Forms -->
-<div class="flex flex-col md:flex-row gap-6 items-start justify-center p-6">
-  <!-- First Form: Post a Ride -->
-  <div class="w-full md:w-1/2 p-6 bg-white rounded-lg shadow-lg">
-    <h1 class="text-2xl font-bold text-center text-gray-800 mb-6">
-      Post a Ride
-    </h1>
-    <form>
-      <div class="mb-4">
-        <label for="date" class="block text-sm font-medium text-gray-700"
-          >Date <span class="text-red-500">*</span></label
-        >
-        <input
-          type="date"
-          id="date"
-          name="date"
-          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500"
-          required
-        />
-      </div>
-      <div class="mb-4">
-        <label
-          for="start-time"
-          class="block text-sm font-medium text-gray-700"
-          >Start Time <span class="text-red-500">*</span></label
-        >
-        <input
-          type="time"
-          id="start-time"
-          name="start-time"
-          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500"
-          required
-        />
-      </div>
-      <div class="mb-4">
-        <label
-          for="end-time"
-          class="block text-sm font-medium text-gray-700"
-          >End Time <span class="text-red-500">*</span></label
-        >
-        <input
-          type="time"
-          id="end-time"
-          name="end-time"
-          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500"
-          required
-        />
-      </div>
-      <div class="mb-4">
-        <label
-          for="available-spots"
-          class="block text-sm font-medium text-gray-700"
-          >Available Spots <span class="text-red-500">*</span></label
-        >
-        <input
-          type="number"
-          id="available-spots"
-          name="available-spots"
-          placeholder="Enter number of spots"
-          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500"
-          required
-        />
-      </div>
-      <div class="mb-6">
-        <label
-          for="category"
-          class="block text-sm font-medium text-gray-700"
-          >Category <span class="text-red-500">*</span></label
-        >
-        <select
-          id="category"
-          name="category"
-          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500"
-          required
-        >
-          <option value="" disabled selected>Select category</option>
-          <option value="grocery">Grocery</option>
-          <option value="shopping">Shopping</option>
-          <option value="enterainment">Enterainment</option>
-          <option value="other">Other</option>
-        </select>
-      </div>
-     
-    </form>
+  <!-- Container for Both Forms -->
+  <div class="flex flex-col md:flex-row gap-6 items-start justify-center p-6 mt-20 bg-black">
+
+    <!-- First Form: Post a Ride -->
+    <div class="w-full md:w-1/2 p-6 bg-black rounded-lg shadow-lg">
+      <h1 class="text-2xl font-bold text-center text-white mb-6">Post a Ride</h1>
+      <form>
+        <div class="mb-4 bg-black">
+          <label for="date" class="block text-sm font-medium text-white">
+            Date <span class="text-red-500">*</span>
+          </label>
+          <input type="date" id="date" name="date"
+            class="mt-1 block w-full rounded-md bg-transparent text-white border-gray-600 shadow-sm focus:ring-blue-500 focus:border-blue-500"
+            required />
+        </div>
+
+        <div class="mb-4 bg-black">
+          <label for="start-time" class="block text-sm font-medium text-white">
+            Start Time <span class="text-red-500">*</span>
+          </label>
+          <input type="time" id="start-time" name="start-time"
+            class="mt-1 block w-full rounded-md bg-transparent text-white border-gray-600 shadow-sm focus:ring-blue-500 focus:border-blue-500"
+            required />
+        </div>
+
+        <div class="mb-4 bg-black">
+          <label for="end-time" class="block text-sm font-medium text-white">
+            End Time <span class="text-red-500">*</span>
+          </label>
+          <input type="time" id="end-time" name="end-time"
+            class="mt-1 block w-full rounded-md bg-transparent text-white border-gray-600 shadow-sm focus:ring-blue-500 focus:border-blue-500"
+            required />
+        </div>
+
+        <div class="mb-4 bg-black">
+          <label for="available-spots" class="block text-sm font-medium text-white">
+            Available Spots <span class="text-red-500">*</span>
+          </label>
+          <input type="number" id="available-spots" name="available-spots" placeholder="Enter number of spots"
+            class="mt-1 block w-full rounded-md bg-transparent text-white border-gray-600 shadow-sm focus:ring-blue-500 focus:border-blue-500"
+            required />
+        </div>
+
+        <div class="mb-6 bg-black">
+          <label for="category" class="block text-sm font-medium text-white">
+            Category <span class="text-red-500">*</span>
+          </label>
+          <select id="category" name="category"
+            class="mt-1 block w-full rounded-md bg-transparent text-white border-gray-600 shadow-sm focus:ring-blue-500 focus:border-blue-500"
+            required>
+            <option value="" disabled selected>Select category</option>
+            <option value="grocery">Grocery</option>
+            <option value="shopping">Shopping</option>
+            <option value="entertainment">Entertainment</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+      </form>
+    </div>
+
+    <!-- Second Form: Car Details -->
+    <div class="w-full md:w-1/2 p-6 bg-black rounded-lg shadow-lg">
+      <h1 class="text-2xl font-bold text-center text-white mb-6">Car Details</h1>
+      <form>
+        <div class="mb-4">
+          <label for="car-image" class="block text-sm font-medium text-white">
+            Upload Car Picture <span class="text-red-500">*</span>
+          </label>
+          <input type="file" id="car-image" name="car-image" accept="image/*"
+            class="mt-1 block w-full text-sm text-white border border-gray-600 rounded-lg cursor-pointer bg-black focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+            required />
+        </div>
+
+        <div class="mb-4">
+          <label for="license-number" class="block text-sm font-medium text-white">
+            License Plate <span class="text-red-500">*</span>
+          </label>
+          <input type="text" id="license-number" name="license-number" placeholder="Enter license plate"
+            class="mt-1 block w-full text-sm text-white rounded-md border-gray-600 bg-transparent shadow-sm focus:ring-blue-500 focus:border-blue-500"
+            required />
+        </div>
+
+        <div class="mb-4">
+          <label for="mileage" class="block text-sm font-medium text-white">
+            Mileage (in km) <span class="text-red-500">*</span>
+          </label>
+          <input type="number" id="mileage" name="mileage" placeholder="Enter mileage"
+            class="mt-1 block w-full text-sm text-white rounded-md border-gray-600 bg-transparent shadow-sm focus:ring-blue-500 focus:border-blue-500"
+            required />
+        </div>
+
+        <div class="mt-6">
+          <a href="{{url_for('map')}}" target="_blank" class="text-blue-600 underline hover:text-blue-800">
+            Select destination
+          </a>
+        </div>
+
+        <button type="submit"
+          class="w-full mt-4 py-2 px-4 bg-green-600 text-white font-semibold rounded-md shadow hover:bg-green-700 transition">Submit
+          Details</button>
+      </form>
+    </div>
   </div>
 
-  <!-- Second Form: Car Details -->
-  <div class="w-full md:w-1/2 p-6 bg-white rounded-lg shadow-lg">
-    <h1 class="text-2xl font-bold text-center text-gray-800 mb-6">
-      Car Details
-    </h1>
-    <form>
-      <div class="mb-4">
-        <label
-          for="car-image"
-          class="block text-sm font-medium text-gray-700"
-          >Upload Car Picture <span class="text-red-500">*</span></label
-        >
-        <input
-          type="file"
-          id="car-image"
-          name="car-image"
-          accept="image/*"
-          class="mt-1 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-          required
-        />
-      </div>
-      <div class="mb-4">
-        <label
-          for="license-number"
-          class="block text-sm font-medium text-gray-700"
-          >License Plate <span class="text-red-500">*</span></label
-        >
-        <input
-          type="text"
-          id="license-number"
-          name="license-number"
-          placeholder="Enter license plate"
-          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500"
-          required
-        />
-      </div>
-      <div class="mb-4">
-        <label
-          for="mileage"
-          class="block text-sm font-medium text-gray-700"
-          >Mileage (in km) <span class="text-red-500">*</span></label
-        >
-        <input
-          type="number"
-          id="mileage"
-          name="mileage"
-          placeholder="Enter mileage"
-          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500"
-          required
-        />
-      </div>
-      <div class="mt-6">
-        <a
-          href="{{url_for('map')}}"
-          target="_blank"
-          class="text-blue-600 underline hover:text-blue-800"
-          >Select destination</a
-        >
-      </div>
-      <button
-        type="submit"
-        class="w-full mt-4 py-2 px-4 bg-green-600 text-white font-semibold rounded-md shadow hover:bg-green-700 transition"
-      >
-        Submit Details
-      </button>
-    </form>
-  </div>
-</div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Add any required initialization for Flowbite or additional JS logic here.
+    });
+  </script>
+</body>
 
-  
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        // Add any required initialization for Flowbite or additional JS logic here.
-      });
-    </script>
-  </body>
 </html>
