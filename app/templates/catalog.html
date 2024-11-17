@@ -56,25 +56,24 @@
   <!-- Form Section -->
   <div class="pt-20">
     <form class="max-w-xxl mx-auto bg-white p-6 rounded-lg shadow-md" action="{{ url_for('catalog') }}" method="post">
-      <input type="hidden" name="type" value="filter">
+      <input type="hidden" name="type" value="filter" />
       <!-- Dropdowns Row -->
       <div class="flex items-end gap-4">
         <!-- Date Dropdown -->
         <div class="flex-1">
-          <select id="date" name="date"
-            class="block w-full p-4 text-lg rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-            <option value="" disabled selected>Select a date</option>
-            <option value="2024-11-16">2024-11-16</option>
-            <option value="2024-11-17">2024-11-17</option>
-            <option value="2024-11-18">2024-11-18</option>
-          </select>
-        </div>
+          <input
+            type="date"
+            id="date"
+            name="date"
+            class="block w-full p-4 text-lg rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+          />
+          </div>
 
         <!-- Time Dropdown -->
         <div class="flex-1">
           <select id="time" name="time"
             class="block w-full p-4 text-lg rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-            <option value="" disabled selected>Select a time range</option>
+            <option value="" selected>Select a time range</option>
             <option value="time-1">10:00 AM - 12:00 PM</option>
             <option value="time-2">02:00 PM - 04:00 PM</option>
             <option value="time-3">06:00 PM - 08:00 PM</option>
@@ -84,12 +83,12 @@
 
         <!-- Location Category Dropdown -->
         <div class="flex-1">
-          <select id="location" name="location"
+          <select id="location" name="category"
             class="block w-full p-4 text-lg rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-            <option value="" disabled selected>Category</option>
+            <option value="" selected>Category</option>
             <option value="grocery">Grocery</option>
             <option value="shopping">Shopping</option>
-            <option value="enterainment">Enterainment</option>
+            <option value="entertainment">Enterainment</option>
             <option value="other">Other</option>
           </select>
         </div>
