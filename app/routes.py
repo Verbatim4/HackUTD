@@ -2,6 +2,7 @@ from app import app
 from flask import render_template, request, redirect, url_for, session
 
 from .utils.get_user_data import get_database_reference
+from datetime import datetime
 
 @app.route('/', methods=('GET', 'POST'))
 def index():
@@ -63,9 +64,13 @@ def login():
     return render_template('login.html')
 
 
-@app.route('/postride/')
+@app.route('/postride/', methods=('GET', 'POST'))
 def postride():
-    return render_template('postride.html')
+    distance = None
+    if request.method == 'POST':
+        distance = request.form['distance']
+
+    return render_template('postride.html', distance=distance)
 
 
 @app.route('/home/')
@@ -74,16 +79,93 @@ def home():
 
 @app.route('/catalog/', methods=('GET', 'POST'))
 def catalog():
+    ref = get_database_reference('/ride_data')
     if request.method == 'POST':
-        date = request.form['date']
-        start_time = request.form['start_time']
-        end_time = request.form['end-time']
-        date = request.form['date']
-        date = request.form['date']
-        date = request.form['date']
-        date = request.form['date']
+        if request.form.get('type') == 'postride':
 
-    return render_template('catalog.html')
+            data_packet = {
+                'date': request.form['date'],
+                'start-time': request.form['start-time'],
+                'end-time': request.form['end-time'],
+                'available-spots': request.form['available-spots'],
+                'category': request.form['category'],
+                'license-number': request.form['license-number'],
+                'mileage': request.form['mileage'],
+                'distance': request.form['distance'],
+            }
+
+            ref.push(data_packet)
+            rides = ref.get()
+
+        elif request.form.get('type') == 'filter':
+            filter_date = request.form['date']
+            time_range = request.form['time']
+            category = request.form['category']
+
+            rides_iterate = ref.get()  
+
+            rides_date = set()
+            for ride_key, ride_value in rides_iterate.items():
+                if not filter_date:
+                    rides_date.add(ride_key)
+                    continue
+
+                if filter_date == ride_value['date']:
+                    rides_date.add(ride_key)
+            
+            am_10 = datetime.strptime("10:00", "%H:%M").time()
+            pm_12 = datetime.strptime("12:00", "%H:%M").time()
+            pm_02 = datetime.strptime("14:00", "%H:%M").time()
+            pm_04 = datetime.strptime("16:00", "%H:%M").time()
+            pm_06 = datetime.strptime("18:00", "%H:%M").time()
+            pm_08 = datetime.strptime("20:00", "%H:%M").time()
+            pm_10 = datetime.strptime("22:00", "%H:%M").time()
+        
+            rides_time = set()
+            for ride_key, ride_value in rides_iterate.items():
+                if not time_range:
+                    rides_time.add(ride_key)
+                    continue
+                
+                time_formatted = datetime.strptime(ride_value['start-time'], "%H:%M").time()
+
+                if time_range == 'time-1':
+                    if am_10 <= time_formatted < pm_12:
+                        rides_time.add(ride_key)
+                if time_range == 'time-2':
+                    if pm_02 <= time_formatted < pm_04:
+                        rides_time.add(ride_key)
+                if time_range == 'time-3':
+                    if pm_06 <= time_formatted < pm_08:
+                        rides_time.add(ride_key)
+                if time_range == 'time-4':
+                    if pm_10 <= time_formatted:
+                        rides_time.add(ride_key)
+
+            rides_category = set()
+            for ride_key, ride_value in rides_iterate.items():
+                if not category:
+                    rides_category.add(ride_key)
+                    continue
+
+                if ride_value['category'] == category:
+                    rides_category.add(ride_key)
+
+            print(rides_date, rides_time, rides_category)
+            print('\n\n\n\n\n')
+            rides_intersection = set.intersection(rides_date, rides_time, rides_category)
+
+            rides = []
+
+            for i, v in rides_iterate.items():
+                for j in rides_intersection:
+                    if i == j:
+                        rides.append(v)
+    
+    else:
+        rides = ref.get()
+
+    return render_template('catalog.html', rides=rides)
 
 @app.route('/ride/')
 def ride():
