@@ -80,22 +80,25 @@ def home():
 @app.route('/catalog/', methods=('GET', 'POST'))
 def catalog():
     ref = get_database_reference('/ride_data')
-    if request.method == 'POST':
+    if request.method != 'POST':
+        rides = [i for i in ref.get().values()]
+    else:
         if request.form.get('type') == 'postride':
 
             data_packet = {
                 'date': request.form['date'],
-                'start-time': request.form['start_time'],
-                'end-time': request.form['end_time'],
-                'available-spots': request.form['available_spots'],
+                'start_time': request.form['start-time'],
+                'end_time': request.form['end-time'],
+                'available_spots': request.form['available-spots'],
                 'category': request.form['category'],
-                'license-number': request.form['license_number'],
+                'license_number': request.form['license-number'],
                 'mileage': request.form['mileage'],
                 'distance': request.form['distance'],
+                'price': "%.2f" % (float(request.form['distance'].split()[0]) / float(request.form['mileage']) * 5),
             }
 
             ref.push(data_packet)
-            rides = ref.get()
+            rides = [i for i in ref.get().values()]
 
         elif request.form.get('type') == 'filter':
             filter_date = request.form['date']
@@ -159,9 +162,9 @@ def catalog():
                 for j in rides_intersection:
                     if i == j:
                         rides.append(v)
+            
+            print(rides)
     
-    else:
-        rides = ref.get()
 
     return render_template('catalog.html', rides=rides)
 
