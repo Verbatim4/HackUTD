@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <script defer src="https://unpkg.com/flowbite@1.5.1/dist/flowbite.min.js"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+
+  <!-- Dashboard Container -->
+  <div id="dashboard" class="bg-white shadow-md rounded-lg p-6 w-3/4 text-center">
+    <!-- Company Logo -->
+    <div class="flex items-center justify-center mb-4">
+      <img src="logo.png" alt="Company Logo" class="h-12 w-12">
+      <h1 class="ml-4 text-2xl font-bold text-gray-700">Company Title</h1>
+    </div>
+    <!-- Dashboard Content -->
+    <h2 class="text-xl font-semibold text-gray-600">Welcome to the Dashboard</h2>
+    <p class="text-gray-500 mt-2">Click below to go to the homepage.</p>
+
+    <!-- Action Button -->
+    <button
+      id="goToHome"
+      class="mt-4 bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded shadow focus:outline-none focus:ring-2 focus:ring-blue-500"
+    >
+      Go to Homepage
+    </button>
+  </div>
+
+  <script>
+    // Add event listener for button click
+    const goToHomeButton = document.getElementById("goToHome");
+    const dashboard = document.getElementById("dashboard");
+
+    goToHomeButton.addEventListener("click", () => {
+      // Add animation class to swipe out
+      dashboard.classList.add("animate__animated", "animate__slideOutLeft");
+
+      // Redirect after animation ends
+      dashboard.addEventListener("animationend", () => {
+        window.location.href = "/index"; // Replace "/home" with the actual homepage URL
+      });
+    });
+  </script>
+
+</body>
+</html>

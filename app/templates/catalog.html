@@ -2,22 +2,44 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Catalog</title>
-  <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
-  <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
-  <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalog</title>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            filter: invert(1);
+            /* Inverts colors to white */
+        }
+
+        input[type="time"]::-webkit-calendar-picker-indicator {
+            filter: invert(1);
+            /* Inverts colors to white */
+        }
+
+        #time {
+            background-color: transparent;
+            color: white;
+        }
+
+        #time option {
+            background-color: black;
+            color: white;
+        }
+    </style>
 </head>
+
 <body class="bg-black">
 
-     <!-- Navigation Bar -->
-     <nav class="bg-black border-b border-gray-700">
+    <!-- Navigation Bar -->
+    <nav class="bg-black border-b border-gray-700">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <!-- Logo Section -->
             <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
                 <img src="{{ url_for('static', filename='logo.png') }}" class="h-8" alt="Logo" />
-                <span class="text-2xl font-semibold text-black">EDIR</span>
+                <span class="text-2xl font-semibold text-white">EDIR</span>
             </a>
             <!-- User and Menu Section -->
             <div class="flex items-center md:order-2 space-x-3 rtl:space-x-reverse">
@@ -31,94 +53,91 @@
                 <div class="hidden z-50 my-4 text-base list-none bg-black divide-y divide-gray-100 rounded-lg shadow"
                     id="user-dropdown">
                     <div class="px-4 py-3">
-                        <span class="block text-sm text-gray-900">Bonnie Green</span>
-                        <span class="block text-sm text-black truncate">name@flowbite.com</span>
+                        <span class="block text-sm text-white">Bonnie Green</span>
+                        <span class="block text-sm text-white truncate">name@flowbite.com</span>
                     </div>
                     <ul class="py-2" aria-labelledby="user-menu-button">
-                    
-                        <li><a href="#" class="block px-4 py-2 text-sm text-gray-700">Sign Out</a></li>
+
+                        <li><a href="#" class="block px-4 py-2 text-sm text-white">Sign Out</a></li>
                     </ul>
                 </div>
             </div>
             <!-- Navigation Links -->
             <div class="hidden md:flex md:w-auto md:order-1">
-                <ul class="flex flex-row font-medium space-x-8 text-black">
+                <ul class="flex flex-row font-medium space-x-8 text-white">
                     <li><a href="{{ url_for('index') }}" class="hover:text-blue-400"><b>Home</b></a></li>
                     <li><a href="{{ url_for('info') }}" class="hover:text-blue-400">About</a></li>
-                    <li><a href="{{ url_for('postride') }}" class="hover:text-blue-400">Post Ride</a></li>
-                    <li><a href="{{ url_for('catalog') }}" class="hover:text-blue-400">Find Ride</a></li>
+                    <li><a href="{{ url_for('map') }}" class="hover:text-blue-400">Post Ride</a></li>
+                    <li><a href="{{ url_for('catalog') }}" class="hover:text-blue-400"><b>Find Ride</b></a></li>
 
-        </ul>
-      </div>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Form Section -->
+    <div class="pt-20">
+        <form class="max-w-xxl mx-auto bg-black p-6 rounded-lg shadow-md" action="{{ url_for('catalog') }}"
+            method="post">
+            <input type="hidden" name="type" value="filter" />
+            <!-- Dropdowns Row -->
+            <div class="flex items-end gap-4">
+                <!-- Date Dropdown -->
+                <div class="flex-1">
+                    <input type="date" id="date" name="date"
+                        class="block w-full p-4 text-white bg-black  text-lg rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
+                </div>
+
+                <!-- Time Dropdown -->
+                <div class="flex-1">
+                    <select id="time" name="time"
+                        class="block w-full p-4 text-white text-lg rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm bg-transparent">
+                        <option value="" selected>Select a time range</option>
+                        <option value="time-1">10:00 AM - 12:00 PM</option>
+                        <option value="time-2">02:00 PM - 04:00 PM</option>
+                        <option value="time-3">06:00 PM - 08:00 PM</option>
+                        <option value="time-4">10:00 PM - 12:00 AM</option>
+                    </select>
+                </div>
+
+                <!-- Location Category Dropdown -->
+                <div class="flex-1">
+                    <select id="location" name="category"
+                        class="block w-full p-4 text-white bg-black text-lg rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        <option value="" selected>Category</option>
+                        <option value="grocery">Grocery</option>
+                        <option value="shopping">Shopping</option>
+                        <option value="entertainment">Entertainment</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <!-- Submit Button -->
+                <div>
+                    <button type="submit"
+                        class="w-full mt-6 py-2 px-4 bg-blue-600 hover:bg-blue-700 rounded-md font-medium text-white">
+                        Find
+                    </button>
+                </div>
+            </div>
+        </form>
     </div>
-  </nav>
-
-  <!-- Form Section -->
-  <div class="pt-20">
-    <form class="max-w-xxl mx-auto bg-black p-6 rounded-lg shadow-md" action="{{ url_for('catalog') }}" method="post">
-      <input type="hidden" name="type" value="filter" />
-      <!-- Dropdowns Row -->
-      <div class="flex items-end gap-4">
-        <!-- Date Dropdown -->
-        <div class="flex-1">
-          <input
-            type="date"
-            id="date"
-            name="date"
-            class="block w-full p-4 text-lg rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-          />
-          </div>
-
-        <!-- Time Dropdown -->
-        <div class="flex-1">
-          <select id="time" name="time"
-            class="block w-full p-4 text-lg rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-            <option value="" selected>Select a time range</option>
-            <option value="time-1">10:00 AM - 12:00 PM</option>
-            <option value="time-2">02:00 PM - 04:00 PM</option>
-            <option value="time-3">06:00 PM - 08:00 PM</option>
-            <option value="time-4">10:00 PM - 12:00 AM</option>
-          </select>
+    <!-- Cards Section -->
+    <div class="pt-10 pb-10 px-4 lg:px-10">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {% for ride in rides %}
+            <div class="bg-black rounded-lg shadow-md overflow-hidden">
+                <img src="https://via.placeholder.com/400x250" alt="Car Ride" class="w-full h-64 object-cover">
+                <div class="p-4">
+                    <h3 class="text-lg text-white font-semibold">Car Ride: Urban Tour</h3>
+                    <p class="text-sm text-white">Enjoy a comfortable ride through the city with scenic views and
+                        historical landmarks.</p>
+                    <p class="text-sm text-white mt-2">Location: Urban | Duration: 1 hour | Price: $25</p>
+                </div>
+            </div>
+            {% endfor %}
         </div>
-
-        <!-- Location Category Dropdown -->
-        <div class="flex-1">
-          <select id="location" name="category"
-            class="block w-full p-4 text-lg rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-            <option value="" selected>Category</option>
-            <option value="grocery">Grocery</option>
-            <option value="shopping">Shopping</option>
-            <option value="entertainment">Enterainment</option>
-            <option value="other">Other</option>
-          </select>
-        </div>
-
-        <!-- Submit Button -->
-        <div>
-          <button type="submit"
-            class="text-black bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg px-6 py-3 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-            Find
-          </button>
-        </div>
-      </div>
-    </form>
-  </div>
-  <!-- Cards Section -->
-  <div class="pt-10 pb-10 px-4 lg:px-10">
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      {% for ride in rides %}
-        <div class="bg-black rounded-lg shadow-md overflow-hidden">
-          <img src="https://via.placeholder.com/400x250" alt="Car Ride" class="w-full h-64 object-cover">
-          <div class="p-4">
-            <h3 class="text-lg font-semibold">Car Ride: Urban Tour</h3>
-            <p class="text-sm text-black">Enjoy a comfortable ride through the city with scenic views and
-              historical landmarks.</p>
-            <p class="text-sm text-black mt-2">Location: Urban | Duration: 1 hour | Price: $25</p>
-          </div>
-        </div>
-      {% endfor %}
     </div>
-  </div>
 </body>
 
 </html>
