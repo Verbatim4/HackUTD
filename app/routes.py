@@ -67,8 +67,9 @@ def postride():
 def home():
     return render_template('index.html')
 
-@app.route('/catalog/')
+@app.route('/catalog/', methods=('GET', 'POST'))
 def catalog():
+    
     return render_template('catalog.html')
 
 @app.route('/ride/')
