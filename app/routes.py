@@ -16,3 +16,7 @@ def login():
 @app.route('/home')
 def home():
     return render_template('index.html')
+
+@app.route('/catalog')
+def catalog():
+    return render_template('catalog.html')
