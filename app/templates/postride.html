@@ -1,139 +1,259 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Post a Ride</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css"
+    />
+    <style>
+      body {
+        background-color: black;
+        padding-top: 80px;
+      }
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Post a Ride</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css" />
-  <style>
-    body {
-      background-color: black;
-      padding-top: 80px;
-    }
-  </style>
-</head>
+      input[type="date"]::-webkit-calendar-picker-indicator {
+        filter: invert(1); /* Inverts colors to white */
+      }
 
-<body class="text-white flex flex-col items-center">
-  <!-- Navigation Bar -->
-  <nav class="bg-black border-b border-transparent fixed top-0 left-0 w-full z-10">
-    <div class="max-w-screen-xl flex justify-between items-center mx-auto p-4">
-      <!-- Logo Section -->
-      <a href="#" class="flex items-center">
-        <img src="{{ url_for('static', filename='logo.jpeg') }}" alt="Logo" class="h-8">
-        <span class="ml-3 text-2xl font-semibold">EDIR</span>
-      </a>
+      input[type="time"]::-webkit-calendar-picker-indicator {
+        filter: invert(1); /* Inverts colors to white */
+      }
+    </style>
+  </head>
 
-      <!-- Navigation Links -->
-      <ul class="flex space-x-8">
-        <li><a href="{{ url_for('index') }}" class="hover:text-blue-400 font-medium">Home</a></li>
-        <li><a href="{{ url_for('info') }}" class="hover:text-blue-400 font-medium">About</a></li>
-        <li><a href="{{ url_for('postride') }}" class="hover:text-blue-400 font-medium">Post Ride</a></li>
-        <li><a href="{{ url_for('catalog') }}" class="hover:text-blue-400 font-medium">Find Ride</a></li>
-      </ul>
+  <body class="text-white flex flex-col items-center">
+    <!-- Navigation Bar -->
+    <nav
+      class="bg-black border-b border-transparent fixed top-0 left-0 w-full z-10"
+    >
+      <div
+        class="max-w-screen-xl flex justify-between items-center mx-auto p-4"
+      >
+        <!-- Logo Section -->
+        <a href="#" class="flex items-center">
+          <img
+            src="{{ url_for('static', filename='logo.jpeg') }}"
+            alt="Logo"
+            class="h-8"
+          />
+          <span class="ml-3 text-2xl font-semibold">EDIR</span>
+        </a>
 
-      <!-- User Section -->
-      <button id="user-menu-button" data-dropdown-toggle="user-dropdown" class="flex items-center">
-        <img class="w-8 h-8 rounded-full" src="{{ url_for('static', filename='download.png') }}" alt="User Photo">
-      </button>
-
-      <!-- Dropdown -->
-      <div id="user-dropdown" class="hidden bg-gray-900 text-white divide-y divide-gray-600 rounded-lg shadow">
-        <div class="px-4 py-3">
-          <p class="text-sm">Bonnie Green</p>
-          <p class="text-sm truncate">name@flowbite.com</p>
-        </div>
-        <ul class="py-2">
-          <li><a href="#" class="block px-4 py-2 hover:bg-gray-800">Sign Out</a></li>
+        <!-- Navigation Links -->
+        <ul class="flex space-x-8">
+          <li>
+            <a
+              href="{{ url_for('index') }}"
+              class="hover:text-blue-400 font-medium"
+              >Home</a
+            >
+          </li>
+          <li>
+            <a
+              href="{{ url_for('info') }}"
+              class="hover:text-blue-400 font-medium"
+              >About</a
+            >
+          </li>
+          <li>
+            <a
+              href="{{ url_for('postride') }}"
+              class="hover:text-blue-400 font-medium"
+              >Post Ride</a
+            >
+          </li>
+          <li>
+            <a
+              href="{{ url_for('catalog') }}"
+              class="hover:text-blue-400 font-medium"
+              >Find Ride</a
+            >
+          </li>
         </ul>
+
+        <!-- User Section -->
+        <button
+          id="user-menu-button"
+          data-dropdown-toggle="user-dropdown"
+          class="flex items-center"
+        >
+          <img
+            class="w-8 h-8 rounded-full"
+            src="{{ url_for('static', filename='download.png') }}"
+            alt="User Photo"
+          />
+        </button>
+
+        <!-- Dropdown -->
+        <div
+          id="user-dropdown"
+          class="hidden bg-gray-900 text-white divide-y divide-gray-600 rounded-lg shadow"
+        >
+          <div class="px-4 py-3">
+            <p class="text-sm">Bonnie Green</p>
+            <p class="text-sm truncate">name@flowbite.com</p>
+          </div>
+          <ul class="py-2">
+            <li>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-800">Sign Out</a>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
 
-  <!-- Forms Section -->
-  <div class="container flex flex-col md:flex-row gap-6 justify-center items-start p-6">
-    <!-- Post a Ride Form -->
-    <form action="{{ url_for('catalog') }}" method="post" class="bg-black rounded-lg shadow-lg p-6 w-full md:w-1/2">
-      <h2 class="text-2xl font-bold mb-6">Post a Ride</h2>
+    <form action="{{ url_for('catalog') }}" method="post">
+      <input type="hidden" name="type" value="postride">
 
-      <!-- Date -->
-      <div class="mb-4">
-        <label for="date" class="block text-sm font-medium">Date <span class="text-red-500">*</span></label>
-        <input type="date" id="date" name="date" required
-          class="block w-full mt-1 bg-transparent text-white border-gray-600 rounded-md focus:ring-blue-500 focus:border-blue-500">
-      </div>
+      <input type="hidden" name="distance" value="{{ distance }}">
 
-      <!-- Start Time -->
-      <div class="mb-4">
-        <label for="start-time" class="block text-sm font-medium">Start Time <span class="text-red-500">*</span></label>
-        <input type="time" id="start-time" name="start-time" required
-          class="block w-full mt-1 bg-transparent text-white border-gray-600 rounded-md focus:ring-blue-500 focus:border-blue-500">
-      </div>
+      <div
+        class="container flex flex-col md:flex-row gap-6 justify-center items-start p-6"
+      >
+        <!-- Post a Ride Form -->
+        <div class="bg-black rounded-lg shadow-lg p-6 w-full md:w-1/2">
+          <h2 class="text-2xl font-bold mb-6">Post a Ride</h2>
 
-      <!-- End Time -->
-      <div class="mb-4">
-        <label for="end-time" class="block text-sm font-medium">End Time <span class="text-red-500">*</span></label>
-        <input type="time" id="end-time" name="end-time" required
-          class="block w-full mt-1 bg-transparent text-white border-gray-600 rounded-md focus:ring-blue-500 focus:border-blue-500">
-      </div>
+          <!-- Date -->
+          <div class="mb-4">
+            <label for="date" class="block text-sm font-medium"
+              >Date <span class="text-red-500">*</span></label
+            >
+            <input
+              type="date"
+              id="date"
+              name="date"
+              required
+              class="block w-full mt-1 bg-transparent text-white border-gray-600 rounded-md focus:ring-blue-500 focus:border-blue-500" 
+            />
+          </div>
 
-      <!-- Available Spots -->
-      <div class="mb-4">
-        <label for="available-spots" class="block text-sm font-medium">Available Spots <span class="text-red-500">*</span></label>
-        <input type="number" id="available-spots" name="available-spots" placeholder="Enter number of spots" required
-          class="block w-full mt-1 bg-transparent text-white border-gray-600 rounded-md focus:ring-blue-500 focus:border-blue-500">
-      </div>
+          <!-- Start Time -->
+          <div class="mb-4">
+            <label for="start-time" class="block text-sm font-medium"
+              >Start Time <span class="text-red-500">*</span></label
+            >
+            <input
+              type="time"
+              id="start-time"
+              name="start-time"
+              required
+              class="block w-full mt-1 bg-transparent text-white border-gray-600 rounded-md focus:ring-blue-500 focus:border-blue-500"
+            />
+          </div>
 
-      <!-- Category -->
-      <div class="mb-4">
-        <label for="category" class="block text-sm font-medium">Category <span class="text-red-500">*</span></label>
-        <select id="category" name="category" required
-          class="block w-full mt-1 bg-transparent text-white border-gray-600 rounded-md focus:ring-blue-500 focus:border-blue-500">
-          <option value="" disabled selected>Select category</option>
-          <option value="grocery">Grocery</option>
-          <option value="shopping">Shopping</option>
-          <option value="entertainment">Entertainment</option>
-          <option value="other">Other</option>
-        </select>
+          <!-- End Time -->
+          <div class="mb-4">
+            <label for="end-time" class="block text-sm font-medium"
+              >End Time <span class="text-red-500">*</span></label
+            >
+            <input
+              type="time"
+              id="end-time"
+              name="end-time"
+              required
+              class="block w-full mt-1 bg-transparent text-white border-gray-600 rounded-md focus:ring-blue-500 focus:border-blue-500"
+            />
+          </div>
+
+          <!-- Available Spots -->
+          <div class="mb-4">
+            <label for="available-spots" class="block text-sm font-medium"
+              >Available Spots <span class="text-red-500">*</span></label
+            >
+            <input
+              type="number"
+              id="available-spots"
+              name="available-spots"
+              placeholder="Enter number of spots"
+              required
+              class="block w-full mt-1 bg-transparent text-white border-gray-600 rounded-md focus:ring-blue-500 focus:border-blue-500"
+            />
+          </div>
+
+          <!-- Category -->
+          <div class="mb-4">
+            <label for="category" class="block text-sm font-medium"
+              >Category <span class="text-red-500">*</span></label
+            >
+            <select
+              id="category"
+              name="category"
+              required
+              class="block w-full mt-1 bg-transparent text-white border-gray-600 rounded-md focus:ring-blue-500 focus:border-blue-500"
+            >
+              <option value="" disabled selected>Select category</option>
+              <option value="grocery">Grocery</option>
+              <option value="shopping">Shopping</option>
+              <option value="entertainment">Entertainment</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Car Details Form -->
+        <div class="bg-black rounded-lg shadow-lg p-6 w-full md:w-1/2">
+          <h2 class="text-2xl font-bold mb-6">Car Details</h2>
+
+          <!-- License Plate -->
+          <div class="mb-4">
+            <label for="license-number" class="block text-sm font-medium"
+              >License Plate <span class="text-red-500">*</span></label
+            >
+            <input
+              type="text"
+              id="license-number"
+              name="license-number"
+              placeholder="Enter license plate"
+              required
+              class="block w-full mt-1 bg-transparent text-white border-gray-600 rounded-md focus:ring-blue-500 focus:border-blue-500"
+            />
+          </div>
+
+          <!-- Mileage -->
+          <div class="mb-4">
+            <label for="mileage" class="block text-sm font-medium"
+              >Mileage (in km) <span class="text-red-500">*</span></label
+            >
+            <input
+              type="number"
+              id="mileage"
+              name="mileage"
+              placeholder="Enter mileage"
+              required
+              class="block w-full mt-1 bg-transparent text-white border-gray-600 rounded-md focus:ring-blue-500 focus:border-blue-500"
+            />
+          </div>
+
+          <!-- Destination -->
+          <div class="mt-4">
+            <a
+              href="{{ url_for('map') }}"
+              onclick="saveData()"
+              class="text-blue-400 underline hover:text-blue-600"
+              >Select Destination</a
+            >
+          </div>
+
+          <button
+            type="submit"
+            class="w-full mt-6 py-2 px-4 bg-blue-600 hover:bg-blue-700 rounded-md font-medium text-white"
+          >
+            Submit Details
+          </button>
+        </div>
       </div>
     </form>
 
-    <!-- Car Details Form -->
-    <form class="bg-black rounded-lg shadow-lg p-6 w-full md:w-1/2">
-      <h2 class="text-2xl font-bold mb-6">Car Details</h2>
+    <script>
+      function saveData() {
+        sess
+      }
+    </script>
 
-      <!-- Upload Car Picture -->
-      <div class="mb-4">
-        <label for="car-image" class="block text-sm font-medium">Upload Car Picture <span class="text-red-500">*</span></label>
-        <input type="file" id="car-image" name="car-image" accept="image/*" required
-          class="block w-full mt-1 bg-transparent text-white border-gray-600 rounded-md focus:ring-blue-500 focus:border-blue-500">
-      </div>
-
-      <!-- License Plate -->
-      <div class="mb-4">
-        <label for="license-number" class="block text-sm font-medium">License Plate <span class="text-red-500">*</span></label>
-        <input type="text" id="license-number" name="license-number" placeholder="Enter license plate" required
-          class="block w-full mt-1 bg-transparent text-white border-gray-600 rounded-md focus:ring-blue-500 focus:border-blue-500">
-      </div>
-
-      <!-- Mileage -->
-      <div class="mb-4">
-        <label for="mileage" class="block text-sm font-medium">Mileage (in km) <span class="text-red-500">*</span></label>
-        <input type="number" id="mileage" name="mileage" placeholder="Enter mileage" required
-          class="block w-full mt-1 bg-transparent text-white border-gray-600 rounded-md focus:ring-blue-500 focus:border-blue-500">
-      </div>
-
-      <!-- Destination -->
-      <div class="mt-4">
-        <a href="{{url_for('map')}}" target="_blank" class="text-blue-400 underline hover:text-blue-600">Select Destination</a>
-      </div>
-
-      <button type="submit"
-        class="w-full mt-6 py-2 px-4 bg-blue-600 hover:bg-blue-700 rounded-md font-medium text-white">Submit
-        Details</button>
-    </form>
-  </div>
-</body>
-
+  </body>
 </html>

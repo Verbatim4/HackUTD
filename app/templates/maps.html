@@ -70,12 +70,14 @@
               readonly
             />
           </div>
-          <button
-            id="submitBtn"
-            class="bg-blue-500 text-white font-semibold py-2 px-4 rounded hover:bg-blue-600"
-          >
-            Submit
-          </button>
+          <form action="{{ url_for('postride') }}" method="post" id="submit-distance">
+            <button
+              id="submitBtn"
+              class="bg-blue-500 text-white font-semibold py-2 px-4 rounded hover:bg-blue-600"
+            >
+              Submit
+            </button>
+          </form>
         </div>
 
         <!-- Result Section -->
@@ -121,7 +123,6 @@
               label: "A",
             });
             originInput.value = `${origin.lat().toFixed(5)}, ${origin.lng().toFixed(5)}`;
-            alert("Start point selected. Now click to set the end point.");
           } else if (!destination) {
             destination = event.latLng;
             if (destinationMarker) destinationMarker.setMap(null);
@@ -149,6 +150,22 @@
             (response, status) => {
               if (status === google.maps.DistanceMatrixStatus.OK) {
                 const distance = response.rows[0].elements[0].distance.text;
+                
+                const form = document.getElementById('submit-distance');
+                const distanceInput = document.createElement("input");
+
+                distanceInput.type = "hidden";
+                distanceInput.name = "distance"
+                distanceInput.value = distance;
+                
+                form.method = 'post';
+                form.appendChild(distanceInput);
+
+                document.getElementById("submitBtn").addEventListener("click", () => {
+                  if (origin && destination) {
+                    form.submit();
+                  }
+                });
 
                 // Display the distance result
                 document.getElementById("distanceResult").textContent =
@@ -161,8 +178,6 @@
               }
             }
           );
-        } else {
-          alert("Please select both a start and an end point.");
         }
       }
 
@@ -170,13 +185,7 @@
       window.onload = initMap;
 
       // Submit Button Event
-      document.getElementById("submitBtn").addEventListener("click", () => {
-        if (origin && destination) {
-          alert("Your selection has been submitted!");
-        } else {
-          alert("Please select both a start and end point before submitting.");
-        }
-      });
+      
     </script>
   </body>
 </html>

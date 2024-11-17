@@ -2,6 +2,7 @@ from app import app
 from flask import render_template, request, redirect, url_for, session
 
 from .utils.get_user_data import get_database_reference
+import datetime
 
 @app.route('/', methods=('GET', 'POST'))
 def index():
@@ -63,9 +64,13 @@ def login():
     return render_template('login.html')
 
 
-@app.route('/postride/')
+@app.route('/postride/', methods=('GET', 'POST'))
 def postride():
-    return render_template('postride.html')
+    distance = None
+    if request.method == 'POST':
+        distance = request.form['distance']
+
+    return render_template('postride.html', distance=distance)
 
 
 @app.route('/home/')
@@ -74,16 +79,40 @@ def home():
 
 @app.route('/catalog/', methods=('GET', 'POST'))
 def catalog():
+    ref = get_database_reference('/ride_data')
     if request.method == 'POST':
-        date = request.form['date']
-        start_time = request.form['start_time']
-        end_time = request.form['end-time']
-        date = request.form['date']
-        date = request.form['date']
-        date = request.form['date']
-        date = request.form['date']
+        if request.form.get('type') == 'postride':
 
-    return render_template('catalog.html')
+            data_packet = {
+                'date': request.form['date'],
+                'start_time': request.form['start-time'],
+                'end-time': request.form['end-time'],
+                'available-spots': request.form['available-spots'],
+                'category': request.form['category'],
+                'license-number': request.form['license-number'],
+                'mileage': request.form['mileage'],
+                'distance': request.form['distance'],
+            }
+
+            ref.push(data_packet)
+        
+        elif request.form.get('type') == 'filter':
+            filter_date = request.form['date']
+            time_range = request.form['time']
+            category = request.form['category']
+
+            rides_iterate = ref.get()  
+
+            rides = []
+            for ride in rides_iterate:
+                if filter_date:
+                    if filter_date == [i[0] for i in ride.values()][0]['date']:
+                        rides.append(ride)
+    
+    else:
+        rides = ref.get()
+
+    return render_template('catalog.html', rides=rides)
 
 @app.route('/ride/')
 def ride():
