@@ -11,15 +11,14 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
 
-<body class="bg-gray-100">
-
-     <!-- Navigation Bar -->
+<body class="bg-black text-white">
+    <!-- Navigation Bar -->
     <nav class="bg-black border-b border-gray-700 w-full">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <!-- Logo Section -->
             <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
                 <img src="{{ url_for('static', filename='logo.jpeg') }}" class="h-8" alt="Logo" />
-                <span class="text-2xl font-semibold text-white">EDIR</span>
+                <span class="text-2xl font-semibold">EDIR</span>
             </a>
             <!-- User and Menu Section -->
             <div class="flex items-center md:order-2 space-x-3 rtl:space-x-reverse">
@@ -30,28 +29,27 @@
                         alt="User Photo">
                 </button>
                 <!-- Dropdown Menu -->
-                <div class="hidden z-50 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow"
+                <div class="hidden z-50 my-4 text-base list-none bg-black divide-y divide-gray-100 rounded-lg shadow"
                     id="user-dropdown">
                     <div class="px-4 py-3">
-                        <span class="block text-sm text-gray-900">Bonnie Green</span>
+                        <span class="block text-sm">Bonnie Green</span>
                         <span class="block text-sm text-gray-500 truncate">name@flowbite.com</span>
                     </div>
                     <ul class="py-2" aria-labelledby="user-menu-button">
-                        <li><a href="#" class="block px-4 py-2 text-sm text-gray-700">Dashboard</a></li>
-                        <li><a href="#" class="block px-4 py-2 text-sm text-gray-700">Settings</a></li>
-                        <li><a href="#" class="block px-4 py-2 text-sm text-gray-700">Earnings</a></li>
-                        <li><a href="#" class="block px-4 py-2 text-sm text-gray-700">Sign Out</a></li>
+                        <li><a href="#" class="block px-4 py-2 text-sm hover:text-blue-400">Dashboard</a></li>
+                        <li><a href="#" class="block px-4 py-2 text-sm hover:text-blue-400">Settings</a></li>
+                        <li><a href="#" class="block px-4 py-2 text-sm hover:text-blue-400">Earnings</a></li>
+                        <li><a href="#" class="block px-4 py-2 text-sm hover:text-blue-400">Sign Out</a></li>
                     </ul>
                 </div>
             </div>
             <!-- Navigation Links -->
             <div class="hidden md:flex md:w-auto md:order-1">
-                <ul class="flex flex-row font-medium space-x-8 text-white">
+                <ul class="flex flex-row font-medium space-x-8">
                     <li><a href="{{ url_for('index') }}" class="hover:text-blue-400"><b>Home</b></a></li>
                     <li><a href="{{ url_for('info') }}" class="hover:text-blue-400">About</a></li>
                     <li><a href="{{ url_for('postride') }}" class="hover:text-blue-400">Post Ride</a></li>
                     <li><a href="{{ url_for('catalog') }}" class="hover:text-blue-400">Find Ride</a></li>
-
                 </ul>
             </div>
         </div>
@@ -61,21 +59,21 @@
     <div class="w-4/5 mx-auto py-12">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <!-- Post a Ride -->
-            <div class="bg-gray-800 p-6 rounded-lg text-center shadow-lg">
+            <div class="bg-black p-6 rounded-lg text-center shadow-lg">
                 <i class="fas fa-car text-blue-500 text-4xl mb-4"></i>
-                <h3 class="text-white text-xl font-semibold mb-4">Post a Ride</h3>
+                <h3 class="text-xl font-semibold mb-4">Post a Ride</h3>
                 <p class="text-gray-400 mb-6">Offer a ride to fellow students and share your journey</p>
                 <a href="{{ url_for('postride') }}"
-                    class="bg-blue-500 text-white py-3 px-6 rounded-lg hover:bg-blue-600 transition duration-300">Post
+                    class="border border-blue-500 text-white py-3 px-6 rounded-lg hover:bg-blue-600 hover:border-blue-600 transition duration-300">Post
                     Ride</a>
             </div>
             <!-- Find a Ride -->
-            <div class="bg-gray-800 p-6 rounded-lg text-center shadow-lg">
+            <div class="bg-black p-6 rounded-lg text-center shadow-lg">
                 <i class="fas fa-search text-blue-500 text-4xl mb-4"></i>
-                <h3 class="text-white text-xl font-semibold mb-4">Find a Ride</h3>
+                <h3 class="text-xl font-semibold mb-4">Find a Ride</h3>
                 <p class="text-gray-400 mb-6">Browse available rides and book your spot</p>
                 <a href="{{ url_for('catalog') }}"
-                    class="bg-blue-500 text-white py-3 px-6 rounded-lg hover:bg-blue-600 transition duration-300">Browse
+                    class="border border-blue-500 text-white py-3 px-6 rounded-lg hover:bg-blue-600 hover:border-blue-600 transition duration-300">Browse
                     Rides</a>
             </div>
         </div>
@@ -83,33 +81,33 @@
 
     <!-- Recent Activity Section -->
     <div class="w-4/5 mx-auto py-12">
-        <h2 class="text-3xl font-bold text-gray-800 mb-6">Recent Activity</h2>
+        <h2 class="text-3xl font-bold text-white mb-6">Recent Activity</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <!-- Map Section -->
-            <div class="bg-gray-100 p-6 rounded-lg shadow-md">
-                <h5 class="text-xl font-semibold text-gray-800 mb-4">Map</h5>
-                <div class="w-full h-64 bg-gray-300 rounded-lg">
+            <div class="bg-black p-6 rounded-lg shadow-md">
+                <h5 class="text-xl font-semibold text-white mb-4">Map</h5>
+                <div class="w-full h-64 bg-black rounded-lg">
                     <div id="map_container" class="tab-pane active">
                         <div id="map" class="h-64 w-full"></div>
                     </div>
                 </div>
             </div>
             <!-- Past Rides Table -->
-            <div class="bg-white p-6 rounded-lg shadow-md">
-                <h5 class="text-xl font-semibold text-gray-800 mb-4">Past Rides</h5>
+            <div class="bg-black p-6 rounded-lg shadow-md">
+                <h5 class="text-xl font-semibold text-white mb-4">Past Rides</h5>
                 <div class="relative overflow-x-auto">
                     <table class="w-full text-sm text-left text-gray-500">
                         <tbody>
-                            <tr class="bg-white border-b">
+                            <tr class="bg-black border-b">
                                 <td class="px-6 py-4 w-1/5">
                                     <img src="{{ url_for('static', filename='large_car.png') }}" alt="Car"
                                         class="w-full h-auto">
                                 </td>
                                 <td class="px-6 py-4">
                                     <div class="flex flex-col">
-                                        <span class="font-medium text-gray-900">Walmart Supercenter</span>
-                                        <span class="text-gray-500 mt-1">6th Oct 20:00</span>
-                                        <span class="text-gray-500 mt-1">$4.00</span>
+                                        <span class="font-medium text-white">Walmart Supercenter</span>
+                                        <span class="text-white mt-1">6th Oct 20:00</span>
+                                        <span class="text-white mt-1">$4.00</span>
                                     </div>
                                 </td>
                                 <td class="px-6 py-4 text-right">
@@ -119,15 +117,15 @@
                                     </button>
                                 </td>
                                  <!-- Second Ride -->
-                        <tr class="bg-white border-b">
+                        <tr class="bg-black border-b">
                             <td class="px-6 py-4 w-1/5">
                                 <img src="{{ url_for('static', filename='large_car.png') }}" alt="Car" class="w-full h-auto">
                             </td>
                             <td class="px-6 py-4">
                                 <div class="flex flex-col">
-                                    <span class="font-medium text-gray-900">AMC richardson</span>
-                                    <span class="text-gray-500 mt-1">7th Oct 15:30</span>
-                                    <span class="text-gray-500 mt-1">$15.00</span>
+                                    <span class="font-medium text-white">AMC richardson</span>
+                                    <span class="text-white mt-1">7th Oct 15:30</span>
+                                    <span class="text-white mt-1">$15.00</span>
                                 </div>
                             </td>
                             <td class="px-6 py-4 text-right">
@@ -135,36 +133,22 @@
                             </td>
                         </tr>
                         <!-- Third Ride -->
-                        <tr class="bg-white border-b">
+                        <tr class="bg-black border-b">
                             <td class="px-6 py-4 w-1/5">
                                 <img src="{{ url_for('static', filename='large_car.png') }}" alt="Car" class="w-full h-auto">
                             </td>
                             <td class="px-6 py-4">
                                 <div class="flex flex-col">
-                                    <span class="font-medium text-gray-900">Gallaria mall</span>
-                                    <span class="text-gray-500 mt-1">8th Oct 10:00</span>
-                                    <span class="text-gray-500 mt-1">$10.00</span>
+                                    <span class="font-medium text-white">Gallaria mall</span>
+                                    <span class="text-white mt-1">8th Oct 10:00</span>
+                                    <span class="text-white mt-1">$10.00</span>
                                 </div>
                             </td>
                             <td class="px-6 py-4 text-right">
                                 <button class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-300">View Details</button>
                             </td>
                         </tr>
-                        <!-- Fourth Ride -->
-                        <tr class="bg-white border-b">
-                            <td class="px-6 py-4 w-1/5">
-                                <img src="{{ url_for('static', filename='large_car.png') }}" alt="Car" class="w-full h-auto">
-                            </td>
-                            <td class="px-6 py-4">
-                                <div class="flex flex-col">
-                                    <span class="font-medium text-gray-900">kroger richardson</span>
-                                    <span class="text-gray-500 mt-1">9th Oct 18:00</span>
-                                    <span class="text-gray-500 mt-1">$12.00</span>
-                                </div>
-                            </td>
-                            <td class="px-6 py-4 text-right">
-                                <button class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-300">View Details</button>
-                            </td>
+                        
                             </tr>
                         </tbody>
                     </table>
