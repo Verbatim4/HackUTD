@@ -15,9 +15,9 @@ def login():
     return render_template('login.html')
 
 
-@app.route('/post_ride')
-def post_ride():
-    return render_template('post_ride.html')
+@app.route('/postride')
+def postride():
+    return render_template('postride.html')
 
 
 @app.route('/home')
