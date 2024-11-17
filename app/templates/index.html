@@ -38,7 +38,7 @@
                             <span class="block text-sm text-gray-500 truncate">{{ email }}</span>
                         </div>
                         <ul class="py-2" aria-labelledby="user-menu-button">
-                            <li><a href="#" class="block px-4 py-2 text-sm text-gray-700">Sign Out</a></li>
+                            <li><a href="{{ url_for('sign_out') }}" class="block px-4 py-2 text-sm text-gray-700">Sign Out</a></li>
                         </ul>
                     </div>
                 </div>
@@ -47,7 +47,7 @@
                     <a href="{{ url_for('login') }}" class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg shadow hover:bg-blue-700 focus:ring-4 focus:ring-blue-300">
                         Login
                     </a>
-                    <a href="{{ url_for('signup') }}" class="px-4 py-2 text-sm font-medium text-blue-600 bg-gray-100 rounded-lg shadow hover:bg-gray-200 focus:ring-4 focus:ring-gray-300">
+                    <a href="{{ url_for('sign_up') }}" class="px-4 py-2 text-sm font-medium text-blue-600 bg-gray-100 rounded-lg shadow hover:bg-gray-200 focus:ring-4 focus:ring-gray-300">
                         Sign Up
                     </a>
                 </div>

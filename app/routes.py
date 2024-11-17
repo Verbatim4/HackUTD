@@ -7,47 +7,47 @@ from .utils.get_user_data import get_database_reference
 def index():
     if not session:
         if request.method == 'POST':
-            email = request.form['floating_email']
-            password = request.form['floating_password']
-            repeat_password = request.form['repeat_password']
-            f_name = request.form['floating_first_name']
-            l_name = request.form['floating_last_name']
-
-            if password != repeat_password:
-                    return redirect(url_for('sign_up'))
-
-            user_packet = {
-                'f_name': f_name,
-                'l_name': l_name,
-                'email': email,
-                'password': password,
-            }
-
             ref = get_database_reference('/users')
-            ref.push(user_packet)
 
-            print('put user in db')
+            if request.form['type'] == 'sign-in':
+                email = request.form['floating_email']
+                password = request.form['floating_password']
+                repeat_password = request.form['repeat_password']
+                f_name = request.form['floating_first_name']
+                l_name = request.form['floating_last_name']
+
+                if password != repeat_password:
+                        return redirect(url_for('sign_up'))
+
+                user_packet = {
+                    'f_name': f_name,
+                    'l_name': l_name,
+                    'email': email,
+                    'password': password,
+                }
+
+                ref.push(user_packet)
+            
+            elif request.form['type'] == 'log-in':
+                print('HELLO!')
+                for i in ref.get():
+                    print(i)
 
         else:
-            print('returned null session site')
             return render_template('index.html', session=None)
             
-        session['user_info'] = user_packet
-        print('site with new session info')
-        return render_template('index.html', 
-            f_name=user_info['f_name'], 
-            l_name=user_info['l_name'], 
-            email=user_info['email']
-        )
-    
-    else:
-        print(session)
-        user_info = session['user_info']
-        return render_template('index.html', 
-            f_name=user_info['f_name'], 
-            l_name=user_info['l_name'], 
-            email=user_info['email']
-        )
+        session['user_info'] = user_info = user_packet
+
+    return render_template('index.html', 
+        f_name=user_info['f_name'], 
+        l_name=user_info['l_name'], 
+        email=user_info['email']
+    )
+
+@app.route('/signout/')
+def sign_out():
+    session.clear()
+    return redirect(url_for('index'))
 
 @app.route('/signup/')
 def sign_up():
