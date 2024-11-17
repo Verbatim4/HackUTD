@@ -28,6 +28,10 @@ def home():
 def catalog():
     return render_template('catalog.html')
 
+@app.route('/ride')
+def ride():
+    return render_template('ride.html')
+
 @app.route('/map')
 def map():
     return render_template('maps.html')
