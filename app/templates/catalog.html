@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalog</title>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Navbar -->
+    <nav class="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800 fixed w-full top-0 z-20 shadow-md">
+        <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
+            <a href="#" class="flex items-center">
+                <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Catalog</span>
+            </a>
+            <div class="flex items-center lg:order-2">
+                <!-- Avatar Circle -->
+                <div class="w-10 h-10 rounded-full bg-gray-300 overflow-hidden border-2 border-gray-200 cursor-pointer">
+                    <img src="https://via.placeholder.com/150" alt="Avatar" class="w-full h-full object-cover">
+                </div>
+            </div>
+            <div class="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1" id="navbar">
+                <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
+                    <li>
+                        <a href="#" class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-blue-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">Home Page</a>
+                    </li>
+                    <li>
+                        <a href="#" class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-blue-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">Ride Catalog</a>
+                    </li>
+                    <li>
+                        <a href="#" class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-blue-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">Create Ride</a>
+                    </li>
+                    <li>
+                        <a href="#" class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-blue-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="#" class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-blue-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">Ride History</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Form Section -->
+    <div class="pt-20">
+        <form class="max-w-xxl mx-auto bg-white p-6 rounded-lg shadow-md" action="{{ url_for('index') }}">
+            <!-- Dropdowns Row -->
+            <div class="flex items-end gap-4">
+                <!-- Date Dropdown -->
+                <div class="flex-1">
+                    <select id="date" name="date" class="block w-full p-4 text-lg rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        <option value="" disabled selected>Select a date</option>
+                        <option value="2024-11-16">2024-11-16</option>
+                        <option value="2024-11-17">2024-11-17</option>
+                        <option value="2024-11-18">2024-11-18</option>
+                    </select>
+                </div>
+
+                <!-- Time Dropdown -->
+                <div class="flex-1">
+                    <select id="time" name="time" class="block w-full p-4 text-lg rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        <option value="" disabled selected>Select a time</option>
+                        <option value="08:00">08:00 AM</option>
+                        <option value="12:00">12:00 PM</option>
+                        <option value="16:00">04:00 PM</option>
+                        <option value="20:00">08:00 PM</option>
+                    </select>
+                </div>
+
+                <!-- Location Category Dropdown -->
+                <div class="flex-1">
+                    <select id="location" name="location" class="block w-full p-4 text-lg rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        <option value="" disabled selected>Category</option>
+                        <option value="urban">Urban</option>
+                        <option value="suburban">Suburban</option>
+                        <option value="rural">Rural</option>
+                    </select>
+                </div>
+
+                <!-- Submit Button -->
+                <div>
+                    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg px-6 py-3 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        Find
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Cards Section -->
+    <div class="pt-10 pb-10 px-4 lg:px-10">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Card 1 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <img src="https://via.placeholder.com/400x250" alt="Car Ride" class="w-full h-64 object-cover">
+                <div class="p-4">
+                    <h3 class="text-lg font-semibold">Car Ride: Urban Tour</h3>
+                    <p class="text-sm text-gray-500">Enjoy a comfortable ride through the city with scenic views and historical landmarks.</p>
+                    <p class="text-sm text-gray-400 mt-2">Location: Urban | Duration: 1 hour | Price: $25</p>
+                </div>
+            </div>
+            <!-- Card 2 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <img src="https://via.placeholder.com/400x250" alt="Car Ride" class="w-full h-64 object-cover">
+                <div class="p-4">
+                    <h3 class="text-lg font-semibold">Car Ride: Suburban Adventure</h3>
+                    <p class="text-sm text-gray-500">Explore the peaceful suburban areas with a relaxing and scenic drive.</p>
+                    <p class="text-sm text-gray-400 mt-2">Location: Suburban | Duration: 2 hours | Price: $40</p>
+                </div>
+            </div>
+            <!-- Card 3 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <img src="https://via.placeholder.com/400x250" alt="Car Ride" class="w-full h-64 object-cover">
+                <div class="p-4">
+                    <h3 class="text-lg font-semibold">Car Ride: Rural Escape</h3>
+                    <p class="text-sm text-gray-500">Take a peaceful ride through the countryside and enjoy the fresh air and open landscapes.</p>
+                    <p class="text-sm text-gray-400 mt-2">Location: Rural | Duration: 3 hours | Price: $50</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -13,3 +13,7 @@ def sign_up():
 @app.route('/login')
 def login():
     return render_template('login.html')
+
+@app.route('/catalog')
+def catalog():
+    return render_template('catalog.html')
