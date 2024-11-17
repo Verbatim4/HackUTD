@@ -63,7 +63,7 @@
 
   <!-- Container for Both Forms -->
   <div class="flex flex-row gap-6 items-start justify-center p-6">
-    <form action="{{ url_for('catalog') }}" class="flex flex-row gap-6" method="post">
+    <form action="{{ url_for('catalog') }}" method="post">
       <div class="w-full md:w-1/2 p-6 bg-white rounded-lg shadow-lg">
         <h1 class="text-2xl font-bold text-center text-gray-800 mb-6">
           Post a Ride
@@ -75,7 +75,7 @@
             class="mt-1 block w-full rounded-md bg-transparent text-white border-gray-600 shadow-sm focus:ring-blue-500 focus:border-blue-500"
             required />
         </div>
-
+  
         <div class="mb-4 bg-black">
           <label for="start-time" class="block text-sm font-medium text-white">
             Start Time <span class="text-red-500">*</span>
@@ -84,7 +84,7 @@
             class="mt-1 block w-full rounded-md bg-transparent text-white border-gray-600 shadow-sm focus:ring-blue-500 focus:border-blue-500"
             required />
         </div>
-
+  
         <div class="mb-4 bg-black">
           <label for="end-time" class="block text-sm font-medium text-white">
             End Time <span class="text-red-500">*</span>
@@ -93,7 +93,7 @@
             class="mt-1 block w-full rounded-md bg-transparent text-white border-gray-600 shadow-sm focus:ring-blue-500 focus:border-blue-500"
             required />
         </div>
-
+  
         <div class="mb-4 bg-black">
           <label for="available-spots" class="block text-sm font-medium text-white">
             Available Spots <span class="text-red-500">*</span>
@@ -102,7 +102,7 @@
             class="mt-1 block w-full rounded-md bg-transparent text-white border-gray-600 shadow-sm focus:ring-blue-500 focus:border-blue-500"
             required />
         </div>
-
+  
         <div class="mb-6 bg-black">
           <label for="category" class="block text-sm font-medium text-white">
             Category <span class="text-red-500">*</span>
@@ -117,13 +117,9 @@
             <option value="other">Other</option>
           </select>
         </div>
-      </form>
-    </div>
-
-    <!-- Second Form: Car Details -->
-    <div class="w-full md:w-1/2 p-6 bg-black rounded-lg shadow-lg">
-      <h1 class="text-2xl font-bold text-center text-white mb-6">Car Details</h1>
-      <form>
+      </div>
+      <div class="w-full md:w-1/2 p-6 bg-black rounded-lg shadow-lg">
+        <h1 class="text-2xl font-bold text-center text-white mb-6">Car Details</h1>
         <div class="mb-4">
           <label for="car-image" class="block text-sm font-medium text-white">
             Upload Car Picture <span class="text-red-500">*</span>
@@ -132,7 +128,7 @@
             class="mt-1 block w-full text-sm text-white border border-gray-600 rounded-lg cursor-pointer bg-black focus:outline-none focus:ring-blue-500 focus:border-blue-500"
             required />
         </div>
-
+  
         <div class="mb-4">
           <label for="license-number" class="block text-sm font-medium text-white">
             License Plate <span class="text-red-500">*</span>
@@ -141,7 +137,7 @@
             class="mt-1 block w-full text-sm text-white rounded-md border-gray-600 bg-transparent shadow-sm focus:ring-blue-500 focus:border-blue-500"
             required />
         </div>
-
+  
         <div class="mb-4">
           <label for="mileage" class="block text-sm font-medium text-white">
             Mileage (in km) <span class="text-red-500">*</span>
@@ -150,18 +146,18 @@
             class="mt-1 block w-full text-sm text-white rounded-md border-gray-600 bg-transparent shadow-sm focus:ring-blue-500 focus:border-blue-500"
             required />
         </div>
-
+  
         <div class="mt-6">
           <a href="{{url_for('map')}}" target="_blank" class="text-blue-600 underline hover:text-blue-800">
             Select destination
           </a>
         </div>
-
+  
         <button type="submit"
           class="w-full mt-4 py-2 px-4 bg-green-600 text-white font-semibold rounded-md shadow hover:bg-green-700 transition">Submit
           Details</button>
-      </form>
-    </div>
+      </div>  
+    </form>
   </div>
 
   <script>

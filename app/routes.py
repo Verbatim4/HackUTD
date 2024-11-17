@@ -36,13 +36,18 @@ def index():
         else:
             return render_template('index.html', session=None)
             
-        session['user_info'] = user_info = user_packet
+        session['user_info'] = user_packet
+        user_info = user_packet
 
-    return render_template('index.html', 
-        f_name=user_info['f_name'], 
-        l_name=user_info['l_name'], 
-        email=user_info['email']
-    )
+    user_info = session['user_info']
+    if user_info:
+        return render_template('index.html', 
+            f_name=user_info['f_name'], 
+            l_name=user_info['l_name'], 
+            email=user_info['email']
+        )
+    else:
+        return render_template('index.html', session=None)
 
 @app.route('/signout/')
 def sign_out():
@@ -69,7 +74,15 @@ def home():
 
 @app.route('/catalog/', methods=('GET', 'POST'))
 def catalog():
-    
+    if request.method == 'POST':
+        date = request.form['date']
+        start_time = request.form['start_time']
+        end_time = request.form['end-time']
+        date = request.form['date']
+        date = request.form['date']
+        date = request.form['date']
+        date = request.form['date']
+
     return render_template('catalog.html')
 
 @app.route('/ride/')
