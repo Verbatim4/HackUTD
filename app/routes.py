@@ -31,3 +31,7 @@ def catalog():
 @app.route('/map')
 def map():
     return render_template('maps.html')
+
+@app.route('/info')
+def info():
+    return render_template('info.html')

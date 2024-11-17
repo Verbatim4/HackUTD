@@ -45,11 +45,11 @@
             <!-- Navigation Links -->
             <div class="hidden md:flex md:w-auto md:order-1">
                 <ul class="flex flex-row font-medium space-x-8 text-white">
-                    <li><a href="#" class="hover:text-blue-400">Home</a></li>
-                    <li><a href="#" class="hover:text-blue-400">About</a></li>
-                    <li><a href="#" class="hover:text-blue-400">Services</a></li>
-                    <li><a href="#" class="hover:text-blue-400">Pricing</a></li>
-                    <li><a href="#" class="hover:text-blue-400">Contact</a></li>
+                    <li><a href="{{ url_for('index') }}" class="hover:text-blue-400"><b>Home</b></a></li>
+                    <li><a href="{{ url_for('info') }}" class="hover:text-blue-400">About</a></li>
+                    <li><a href="{{ url_for('post_ride') }}" class="hover:text-blue-400">Post Ride</a></li>
+                    <li><a href="{{ url_for('catalog') }}" class="hover:text-blue-400">Find Ride</a></li>
+
                 </ul>
             </div>
         </div>
