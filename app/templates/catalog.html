@@ -34,9 +34,7 @@
                         <span class="block text-sm text-gray-500 truncate">name@flowbite.com</span>
                     </div>
                     <ul class="py-2" aria-labelledby="user-menu-button">
-                        <li><a href="#" class="block px-4 py-2 text-sm text-gray-700">Dashboard</a></li>
-                        <li><a href="#" class="block px-4 py-2 text-sm text-gray-700">Settings</a></li>
-                        <li><a href="#" class="block px-4 py-2 text-sm text-gray-700">Earnings</a></li>
+                    
                         <li><a href="#" class="block px-4 py-2 text-sm text-gray-700">Sign Out</a></li>
                     </ul>
                 </div>
@@ -84,9 +82,10 @@
                 <div class="flex-1">
                     <select id="location" name="location" class="block w-full p-4 text-lg rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                         <option value="" disabled selected>Category</option>
-                        <option value="urban">Urban</option>
-                        <option value="suburban">Suburban</option>
-                        <option value="rural">Rural</option>
+                        <option value="grocery">Grocery</option>
+                        <option value="shopping">Shopping</option>
+                        <option value="enterainment">Enterainment</option>
+                        <option value="other">Other</option>
                     </select>
                 </div>
 
@@ -99,39 +98,68 @@
             </div>
         </form>
     </div>
-
     <!-- Cards Section -->
-    <div class="pt-10 pb-10 px-4 lg:px-10">
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- Card 1 -->
-            <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                <img src="https://via.placeholder.com/400x250" alt="Car Ride" class="w-full h-64 object-cover">
-                <div class="p-4">
-                    <h3 class="text-lg font-semibold">Car Ride: Urban Tour</h3>
-                    <p class="text-sm text-gray-500">Enjoy a comfortable ride through the city with scenic views and historical landmarks.</p>
-                    <p class="text-sm text-gray-400 mt-2">Location: Urban | Duration: 1 hour | Price: $25</p>
-                </div>
-            </div>
-            <!-- Card 2 -->
-            <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                <img src="https://via.placeholder.com/400x250" alt="Car Ride" class="w-full h-64 object-cover">
-                <div class="p-4">
-                    <h3 class="text-lg font-semibold">Car Ride: Suburban Adventure</h3>
-                    <p class="text-sm text-gray-500">Explore the peaceful suburban areas with a relaxing and scenic drive.</p>
-                    <p class="text-sm text-gray-400 mt-2">Location: Suburban | Duration: 2 hours | Price: $40</p>
-                </div>
-            </div>
-            <!-- Card 3 -->
-            <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                <img src="https://via.placeholder.com/400x250" alt="Car Ride" class="w-full h-64 object-cover">
-                <div class="p-4">
-                    <h3 class="text-lg font-semibold">Car Ride: Rural Escape</h3>
-                    <p class="text-sm text-gray-500">Take a peaceful ride through the countryside and enjoy the fresh air and open landscapes.</p>
-                    <p class="text-sm text-gray-400 mt-2">Location: Rural | Duration: 3 hours | Price: $50</p>
-                </div>
+<div class="pt-10 pb-10 px-4 lg:px-10">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Card 1 -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <img src="https://via.placeholder.com/400x250" alt="Car Ride" class="w-full h-64 object-cover">
+            <div class="p-4">
+                <h3 class="text-lg font-semibold">Car Ride: Urban Tour</h3>
+                <p class="text-sm text-gray-500">Enjoy a comfortable ride through the city with scenic views and historical landmarks.</p>
+                <p class="text-sm text-gray-400 mt-2">Location: Urban | Duration: 1 hour | Price: $25</p>
             </div>
         </div>
-    </div>
+        <!-- Card 2 -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <img src="https://via.placeholder.com/400x250" alt="Car Ride" class="w-full h-64 object-cover">
+            <div class="p-4">
+                <h3 class="text-lg font-semibold">Car Ride: Suburban Adventure</h3>
+                <p class="text-sm text-gray-500">Explore the peaceful suburban areas with a relaxing and scenic drive.</p>
+                <p class="text-sm text-gray-400 mt-2">Location: Suburban | Duration: 2 hours | Price: $40</p>
+            </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <img src="https://via.placeholder.com/400x250" alt="Car Ride" class="w-full h-64 object-cover">
+            <div class="p-4">
+                <h3 class="text-lg font-semibold">Car Ride: Rural Escape</h3>
+                <p class="text-sm text-gray-500">Take a peaceful ride through the countryside and enjoy the fresh air and open landscapes.</p>
+                <p class="text-sm text-gray-400 mt-2">Location: Rural | Duration: 3 hours | Price: $50</p>
+            </div>
+        </div>
+        <!-- Card 4 -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <img src="https://via.placeholder.com/400x250" alt="Car Ride" class="w-full h-64 object-cover">
+            <div class="p-4">
+                <h3 class="text-lg font-semibold">Car Ride: City Lights</h3>
+                <p class="text-sm text-gray-500">Experience the vibrant nightlife with a drive through the city's most famous spots.</p>
+                <p class="text-sm text-gray-400 mt-2">Location: Urban | Duration: 1.5 hours | Price: $30</p>
+            </div>
+        </div>
+        <!-- Card 5 -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <img src="https://via.placeholder.com/400x250" alt="Car Ride" class="w-full h-64 object-cover">
+            <div class="p-4">
+                <h3 class="text-lg font-semibold">Car Ride: Beachside Getaway</h3>
+                <p class="text-sm text-gray-500">Take a scenic drive along the coastline and enjoy the relaxing beach views.</p>
+                <p class="text-sm text-gray-400 mt-2">Location: Urban | Duration: 2 hours | Price: $45</p>
+            </div>
+        </div>
+        <!-- Card 6 -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <img src="https://via.placeholder.com/400x250" alt="Car Ride" class="w-full h-64 object-cover">
+            <div class="p-4">
+                <h3 class="text-lg font-semibold">Car Ride: Mountain Retreat</h3>
+                <p class="text-sm text-gray-500">Enjoy a tranquil drive to the mountains for a relaxing getaway.</p>
+                <p class="text-sm text-gray-400 mt-2">Location: Rural | Duration: 4 hours | Price: $60</p>
+            </div>
+        </div>
+        
+
+    
+
+        
 
 </body>
 </html>
